@@ -22,7 +22,7 @@ if (main_color !== null) {
     }
   });
 }
-console.log(nav_bullets);
+
 nav_bullets.forEach((li) => {
   li.addEventListener("click", (e) => {
     nav_bullets.forEach((li) => {
@@ -75,6 +75,18 @@ add_button.addEventListener("click", (e) => {
     arr.push(text_input.value);
     localStorage.setItem("items", JSON.stringify(arr));
     text_input.value = "";
+  } else {
+    Toastify({
+      text: "input field is empty please enter some data",
+      duration: 4000,
+      close: true,
+      gravity: "top",
+      position: "right",
+      stopOnFocus: true,
+      style: {
+        background: "#f44336",
+      },
+    }).showToast();
   }
   if (arr.length > 0) {
     first_Box.style.cssText = "display: block;";
@@ -86,10 +98,8 @@ let div_Maker = (value) => {
   let p = document.createElement("p");
   let text = document.createTextNode(`${value}`);
   p.appendChild(text);
-  let delete_btn = document.createElement("button");
-  let btn_i = document.createElement("i");
-  btn_i.classList.add("fa-sharp", "fa-solid", "fa-trash");
-  delete_btn.appendChild(btn_i);
+  let delete_btn = document.createElement("i");
+  delete_btn.classList.add("fa-sharp", "fa-solid", "fa-trash");
   delete_btn.onclick = () => {
     for (let i = 0; i < arr.length; i++) {
       if (arr[i] === value) {
